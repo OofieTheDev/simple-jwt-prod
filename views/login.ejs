@@ -1,0 +1,26 @@
+<%- include("partials/header") -%>
+<body>
+    <section class="standard-sec">
+        <div class="flex items-center justify-center h-full">
+            <div class="w-1/2">
+                <form class="text-white" method="post" action="/authenticate">
+                    <h1 class="text-3xl text-blue-500 font-bold py-5">Authentication</h1>
+                    <div class="inp-div">
+                        <p class="inp-label">Username</p>
+                        <i class="fa-solid fa-user-secret"></i>
+                        <input name="username" class="bg-transparent border-b-2 border-white ml-4 w-8/12 sm:w-10/12 pb-2 focus:outline-none" type="text" placeholder="Username" autocomplete="off">
+                    </div>
+                    <div class="inp-div">
+                        <p class="inp-label">Password</p>
+                        <i class="fa-solid fa-key"></i>
+                        <input name="password" class="bg-transparent border-b-2 border-white ml-4 w-8/12 sm:w-10/12 pb-2 focus:outline-none" type="password" placeholder="Password" autocomplete="off">
+                    </div>
+                        <br>
+                    <button class="rounded-lg mt-5 bg-blue-500 text-white px-5 py-2">Login</button>
+                </form>
+            </div>
+            
+        </div>
+    </section>
+</body>
+<%- include("partials/footer") -%>

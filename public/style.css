@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    .html {
+        overflow: hidden;
+    }
+    .standard-sec {
+        @apply bg-gray-900 h-screen w-screen py-10;
+    }
+    .inp-label {
+        @apply mb-2;
+    }
+    .inp-div {
+        @apply py-3;
+    }
+}

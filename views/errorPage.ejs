@@ -1,0 +1,13 @@
+<%- include("partials/header") -%>
+<body>
+    <section class="standard-sec">
+        <div class="flex items-center justify-center h-full">
+            <div class="w-1/2">
+                <h1 class="text-blue-500 text-3xl mb-4 md:text-5xl"><%= errorCode %></h1>
+                <p class="text-white md:text-3xl"><%= msg %></p>
+                <button onclick="location.href='/'" class="rounded-lg mt-5 bg-blue-500 text-white px-5 py-2">Return Home</button>
+            </div>
+        </div>
+    </section>
+</body>
+<%- include("partials/footer") -%>
