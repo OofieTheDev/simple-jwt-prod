@@ -21,7 +21,7 @@ function checkAuth(req, res, next) {
         if (err.name === "JsonWebTokenError" || err.name === "NotBeforeError") {
             return res.render("errorPage", { errorCode: "401 Unauthorized", msg: ERROR_CODES["401 Unauthorized"]})
         }
-        
+
     })
 }
 

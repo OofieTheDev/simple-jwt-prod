@@ -20,14 +20,22 @@ router.get("/register", (req, res) => {
 })
 
 router.post("/register", checkDuplicate, (req, res) => {
-    const username = req.body.username;
+
+    const username = req.body.username.trim();
+    const password = req.body.password.trim();
+    const ip = req.headers['cf-connecting-ip'] || req.socket.remoteAddress;
+
+    if (username == "" || password == "") {
+        return res.redirect("/login");
+    }
+
     genPass(req.body.password).then((hash) => {
         const newUser = new User({
             username: username,
             password: hash,
-            ip: req.ip
+            ip: ip
         })
-        
+
         newUser.save();
     }).catch(err => {
         console.log(err);
@@ -38,11 +46,15 @@ router.post("/register", checkDuplicate, (req, res) => {
 
 router.post("/authenticate", (req, res) => {
     let hash = null;
-    const username = req.body.username;
-    const password = req.body.password;
+    const username = req.body.username.trim();
+    const password = req.body.password.trim();
+
+    if (username == "" || password == "") {
+        return res.redirect("/login");
+    }
 
     const result = User.findOne({username: username});
-    
+
     result.then((user) => {
         if (user == null) {
             console.log("User not found.")
@@ -56,7 +68,7 @@ router.post("/authenticate", (req, res) => {
             const jwtObj = { username: user.username, id: user.id, exp: Math.floor(new Date().getTime() / 1000) + 300 };
             console.log(jwtObj);
             const jwtToken = jwt.sign(jwtObj, process.env.ACCESS_TOKEN);
-            res.cookie("token", jwtToken, { httpOnly: false, secure: false, samesite: true, path: "/" }); 
+            res.cookie("token", jwtToken, { httpOnly: true, secure: true, samesite: true, path: "/" });
             // only false when in dev env, once prod can change back to true as it will be https and hence cookie can be accessed by server
             // but when developing since no https, setting secure as true will interfere with development
             // sameSite???

@@ -11,12 +11,12 @@ const protected = require("./routes/protected/protected.js");
 require("dotenv").config();
 
 const app = express()
-const PORT = 9678;
+const PORT = 5000;
 
 app.use(express.json());
 app.use(cookieParser())
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, 'public')));
+app.use("/", express.static(path.join(__dirname, 'public')));
 
 app.set("view engine", "ejs");
 
